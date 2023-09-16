@@ -15,16 +15,16 @@ importers:
   packages/tdsm:
     dependencies:
       '@tdsm/cache':
-        specifier: '*'
+        specifier: ^0.0.0-alpha.1
         version: link:../tdsm-cache
       '@tdsm/core':
-        specifier: '*'
+        specifier: ^0.0.0-alpha.1
         version: link:../tdsm-core
       '@tdsm/logger':
-        specifier: '*'
+        specifier: ^0.0.0-alpha.0
         version: link:../tdsm-logger
       '@tdsm/types':
-        specifier: '*'
+        specifier: ^0.0.0-alpha.0
         version: link:../tdsm-types
       ansis:
         specifier: ^1.5.5
@@ -88,7 +88,7 @@ importers:
   packages/tdsm-cache:
     dependencies:
       '@tdsm/types':
-        specifier: '*'
+        specifier: ^0.0.0-alpha.0
         version: link:../tdsm-types
       find-cache-dir:
         specifier: 3.3.2
@@ -143,7 +143,7 @@ importers:
   packages/tdsm-core:
     dependencies:
       '@tdsm/types':
-        specifier: '*'
+        specifier: ^0.0.0-alpha.0
         version: link:../tdsm-types
       cross-spawn:
         specifier: ^7.0.3

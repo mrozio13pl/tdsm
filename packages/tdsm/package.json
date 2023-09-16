@@ -1,6 +1,6 @@
 {
     "name": "tdsm",
-    "version": "0.0.0-alpha.0",
+    "version": "0.0.0-alpha.1",
     "description": "Automatically installs typescript declarations for your dependencies.",
     "main": "lib/index.js",
     "bin": {
@@ -28,8 +28,8 @@
         "lib"
     ],
     "dependencies": {
-        "@tdsm/cache": "^0.0.0-alpha.0",
-        "@tdsm/core": "^0.0.0-alpha.0",
+        "@tdsm/cache": "^0.0.0-alpha.1",
+        "@tdsm/core": "^0.0.0-alpha.1",
         "@tdsm/logger": "^0.0.0-alpha.0",
         "@tdsm/types": "^0.0.0-alpha.0",
         "ansis": "^1.5.5",
