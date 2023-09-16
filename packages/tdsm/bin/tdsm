@@ -1,0 +1,27 @@
+#!/usr/bin/env node
+
+const tdsm = require('../lib/index.js');
+const parseOptions = require('../lib/parseOptions.js');
+const sade = require('sade');
+const resolveVersion = require('resolve-version');
+
+const prog = sade('tdsm', true).version(resolveVersion('tdsm'));
+
+prog
+    .describe('Automatically installs typescript declarations from DefinitelyTyped')
+    .option('-D, --dev', 'Save @types in `devDependencies` list')
+    .option('-O, --optional', 'Save @types in `optionalDependencies` list')
+    .option('-P, --peer', 'Save @types in `peerDependencies` list')
+    .option('-B, --bundle', 'Save @types in `bundleDependencies` list')
+    .option('-E, --exact', '@types dependencies will be configured with an exact version')
+    .option('-M, --manager', 'What package manager should be used')
+    .option('-I, --ignore', 'A list of packages to ignore')
+    .option('--pkgDir', 'Directory where `package.json` is located.')
+    .option('--debug', 'Displays additional info', false)
+    .option('--no-cache', 'Prevent data from being saved in cache file', false)
+    .option('--built-ins', 'Whether should check built-in modules', false)
+    .action(function (opts) {
+        tdsm.default(parseOptions.default(opts));
+    })
+
+prog.parse(process.argv);

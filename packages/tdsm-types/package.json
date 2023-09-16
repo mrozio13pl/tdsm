@@ -1,0 +1,14 @@
+{
+    "name": "@tdsm/types",
+    "version": "0.0.0-alpha",
+    "types": "index.d.ts",
+    "repository": "mrozio13pl/tdsm",
+    "author": {
+        "name": "mrozio13pl"
+    },
+    "license": "MIT",
+    "publishConfig": {
+        "access": "public"
+    },
+    "gitHead": "f84ae1c785425d520abc64c8024eed4b01919ff7"
+}

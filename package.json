@@ -1,0 +1,20 @@
+{
+    "name": "tdsm",
+    "version": "0.0.0-alpha",
+    "description": "Automatically installs typescript declarations for your dependencies.",
+    "main": "index.js",
+    "workspaces": [
+        "packages/*"
+    ],
+    "keywords": [],
+    "repository": "mrozio13pl/tdsm",
+    "author": "mrozio13pl",
+    "license": "MIT",
+    "scripts": {
+        "release": "npx lerna run test && npx lerna run build && lerna publish"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "lerna": "^7.2.0"
+    }
+}

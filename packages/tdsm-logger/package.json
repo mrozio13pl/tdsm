@@ -1,0 +1,33 @@
+{
+    "name": "@tdsm/logger",
+    "version": "0.0.0-alpha",
+    "description": "Simple logger based on proc-log",
+    "main": "lib/index.js",
+    "types": "lib/index.d.ts",
+    "repository": "mrozio13pl/tdsm",
+    "license": "MIT",
+    "author": {
+        "name": "mrozio13pl"
+    },
+    "scripts": {
+        "build": "tsup"
+    },
+    "files": [
+        "lib"
+    ],
+    "dependencies": {
+        "ansis": "^1.5.5"
+    },
+    "devDependencies": {
+        "@types/node": "^20.6.0",
+        "@typescript-eslint/eslint-plugin": "^6.6.0",
+        "@typescript-eslint/parser": "^6.6.0",
+        "eslint": "^8.47.0",
+        "tsup": "^7.2.0",
+        "typescript": "^5.2.2"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "gitHead": "f84ae1c785425d520abc64c8024eed4b01919ff7"
+}
