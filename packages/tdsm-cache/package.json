@@ -1,6 +1,6 @@
 {
     "name": "@tdsm/cache",
-    "version": "0.0.0-alpha",
+    "version": "0.0.0-alpha.0",
     "description": "Cachefile manager for tdsm.",
     "main": "lib/index.js",
     "repository": "mrozio13pl/tdsm",

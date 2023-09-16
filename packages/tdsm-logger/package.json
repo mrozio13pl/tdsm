@@ -1,6 +1,6 @@
 {
     "name": "@tdsm/logger",
-    "version": "0.0.0-alpha",
+    "version": "0.0.0-alpha.0",
     "description": "Simple logger based on proc-log",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
