@@ -11,8 +11,9 @@ import findUpKeys from 'find-up-keys';
  */
 function hasOwnTypes(dependency: string): boolean {
     try {
-        const moduleDir = path.join(process.cwd(), 'node_modules', dependency);
+        const moduleDir = path.join(process.cwd(), 'node_modules', ...dependency.split('/'));
         const { packageJson, path: packagePath } = readPkgUp.sync({ cwd: moduleDir }) || {};
+        log.verbose(`${dependency}'s package path: `, packagePath);
 
         if (!packageJson || !packagePath) {
             log.warn('`package.json` is missing in', packagePath);
@@ -21,7 +22,14 @@ function hasOwnTypes(dependency: string): boolean {
 
         const types = findUpKeys(packageJson, 'types')[0] || findUpKeys(packageJson, 'typings')[0];
 
-        if (types) return fs.existsSync(path.join(path.dirname(packagePath), types));
+        if (types) {
+            if (typeof types === 'string') return fs.existsSync(path.join(path.dirname(packagePath), types));
+            if (typeof types === 'object') {
+                return Object.values(types)
+                    .filter((tdfile) => typeof tdfile === 'string')
+                    .some((tdfile) => fs.existsSync(path.join(path.dirname(packagePath), tdfile as string)));
+            }
+        }
 
         const mainFile = packageJson.main || 'index.js';
         const typingsFile = mainFile.replace(/\.[^.]+$/, '');
