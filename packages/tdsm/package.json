@@ -28,10 +28,10 @@
         "lib"
     ],
     "dependencies": {
-        "@tdsm/cache": "^0.0.0-alpha.1",
+        "@tdsm/cache": "^0.0.0-beta.0",
         "@tdsm/core": "^0.0.0-beta.0",
-        "@tdsm/package-install": "0.0.0-beta.0",
         "@tdsm/logger": "^0.0.0-alpha.0",
+        "@tdsm/package-install": "^0.0.0-beta.0",
         "@tdsm/types": "^0.0.0-beta.0",
         "ansis": "^1.5.5",
         "defu": "^6.1.2",
