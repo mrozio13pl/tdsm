@@ -1,6 +1,6 @@
 {
     "name": "tdsm",
-    "version": "0.0.0-alpha",
+    "version": "0.0.0-beta",
     "description": "Automatically installs typescript declarations for your dependencies.",
     "main": "index.js",
     "workspaces": [

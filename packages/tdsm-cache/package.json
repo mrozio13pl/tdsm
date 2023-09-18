@@ -20,7 +20,7 @@
         "lib"
     ],
     "dependencies": {
-        "@tdsm/types": "^0.0.0-alpha.0",
+        "@tdsm/types": "^0.0.0-beta.0",
         "find-cache-dir": "3.3.2",
         "jsonfile": "^6.1.0",
         "proc-log": "^3.0.0",
