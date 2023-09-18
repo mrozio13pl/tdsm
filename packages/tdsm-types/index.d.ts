@@ -1,5 +1,14 @@
+// Types for tdsm.
+
+/**
+ * Package manager (`npm` | `yarn` | `pnpm`).
+ */
 export declare type PackageManager = 'npm' | 'yarn' | 'pnpm';
 
+/**
+ * Save option (`dev` | `optional` | `peer` | `bundle` | `exact`).
+ * @link https://docs.npmjs.com/cli/v10/commands/npm-install
+ */
 export declare type SaveOption = 'dev' | 'optional' | 'peer' | 'exact' | 'bundle';
 
 /**
@@ -71,4 +80,14 @@ export declare interface CacheOptions {
 export declare interface GetPackageJsonOptions {
     path?: string;
     normalize?: boolean;
+}
+
+export declare interface PackageInstallOptions {
+    save: SaveOption[];
+    manager: PackageManager;
+    /**
+     * Should the packages be installed with `@types/` prefix.
+     * @default false
+     */
+    types: boolean;
 }

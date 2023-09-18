@@ -1,5 +1,6 @@
-import { getPackageJson, getMissingTypes, hasOwnTypes, hasAtTypes, install } from '@tdsm/core';
+import { getPackageJson, getMissingTypes, hasOwnTypes, hasAtTypes } from '@tdsm/core';
 import cachefile from '@tdsm/cache';
+import install from '@tdsm/package-install';
 import { Options, Library } from '@tdsm/types';
 import logger from '@tdsm/logger';
 import ansis from 'ansis';
@@ -110,8 +111,11 @@ async function run(options: Options): Promise<void> {
 
     await install(
         missing.map(({ dependency }) => dependency),
-        options.manager,
-        options.save,
+        {
+            manager: options.manager,
+            save: options.save,
+            types: true,
+        },
     );
     cache.save();
 

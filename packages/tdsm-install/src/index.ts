@@ -1,18 +1,17 @@
 import spawn from 'cross-spawn';
 import log from 'proc-log';
-import { PackageManager, SaveOption } from '@tdsm/types';
+import { PackageInstallOptions } from '@tdsm/types';
 
 /**
  * Installs dependencies using given package manager.
  * @param {string[]} libraries Dependencies to install, like `['chalk', 'semver']`
- * @param {PackageManager} manager Package manager (`npm` | `yarn` | `pnpm`)
- * @param {SaveOption} save Save option (`dev` | `exact` | `optional` | `peer`).
+ * @param {PackageInstallOptions} options Options for managing the installation process.
  */
-function install(libraries: string[], manager: PackageManager = 'npm', save: SaveOption[] = ['dev']): Promise<void> {
-    libraries = libraries.map((library) => '@types/' + library);
+function install(libraries: string[], options: PackageInstallOptions = { manager: 'npm', save: ['dev'], types: false }): Promise<void> {
+    if(options.types) libraries = libraries.map((library) => '@types/' + library);
     log.verbose('Installing following', ...libraries);
 
-    const proc = spawn(manager, ['add', ...libraries, ...save.map((saveOption) => '--save-' + saveOption)], {
+    const proc = spawn(options.manager, ['add', ...libraries, ...options.save.map((saveOption) => '--save-' + saveOption)], {
         stdio: 'inherit',
     });
 
