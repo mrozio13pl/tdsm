@@ -9,6 +9,7 @@ import resolveVersion from 'resolve-version';
 import { createSpinner } from 'nanospinner';
 import pMapSeries from 'p-map-series';
 import Module from 'module';
+import { formatLibraryVersion } from './utils';
 
 const pkg = getPackageJson();
 const version = resolveVersion('tdsm') || ' unknown';
@@ -65,9 +66,7 @@ async function run(options: Options): Promise<void> {
     missing = (
         await pMapSeries(missing, async (lib, i) => {
             spinner.update({
-                text: `Checking: ${lib.dependency}${lib.version ? '@' + lib.version : ''} (${i + 1} out of ${
-                    missing.length
-                })`,
+                text: `Checking: ${lib.dependency}@${formatLibraryVersion(lib)} (${i + 1} out of ${missing.length})`,
             });
 
             const hasTypes = cache.find(lib)?.hasAtTypes || (await hasAtTypes(lib.dependency));
@@ -75,11 +74,7 @@ async function run(options: Options): Promise<void> {
 
             if (!hasTypes) {
                 spinner.clear();
-                logger.warn(
-                    `${lib.dependency}${
-                        lib.version ? '@' + lib.version : ''
-                    } doesn't provide any typescript declarations`,
-                );
+                logger.warn(`${lib.dependency}${formatLibraryVersion(lib)} doesn't provide any typescript declarations`);
                 spinner.start();
                 return;
             }
@@ -103,9 +98,7 @@ async function run(options: Options): Promise<void> {
         '\n',
         ansis.bold(`Found ${missing.length} missing dependencies:`),
         '\n',
-        missing
-            .map((lib) => `${ansis.green('• ')}${lib.dependency}${lib.version ? ansis.gray('@' + lib.version) : ''}\n`)
-            .join(' '),
+        missing.map((lib) => `${ansis.green('• ')}${lib.dependency}${ansis.gray(formatLibraryVersion(lib))}\n`).join(' '),
         '\n',
     );
 
