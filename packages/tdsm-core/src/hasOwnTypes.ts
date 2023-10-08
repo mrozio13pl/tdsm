@@ -9,6 +9,7 @@ import findUpKeys from 'find-up-keys';
  * @param {string} dependency Dependency, e.g. `chalk`
  * @returns {boolean}
  */
+// eslint-disable-next-line consistent-return
 function hasOwnTypes(dependency: string): boolean {
     try {
         const moduleDir = path.join(process.cwd(), 'node_modules', ...dependency.split('/'));
@@ -26,8 +27,8 @@ function hasOwnTypes(dependency: string): boolean {
             if (typeof types === 'string') return fs.existsSync(path.join(path.dirname(packagePath), types));
             if (typeof types === 'object') {
                 return Object.values(types)
-                    .filter((tdfile) => typeof tdfile === 'string')
-                    .some((tdfile) => fs.existsSync(path.join(path.dirname(packagePath), tdfile as string)));
+                    .filter(tdfile => typeof tdfile === 'string')
+                    .some(tdfile => fs.existsSync(path.join(path.dirname(packagePath), tdfile as string)));
             }
         }
 
@@ -35,9 +36,9 @@ function hasOwnTypes(dependency: string): boolean {
         const typingsFile = mainFile.replace(/\.[^.]+$/, '');
         const typingsExts = ['.d.ts', '.d.mts', '.d.cts'];
 
-        return typingsExts.some((ext) => fs.existsSync(path.join(path.dirname(packagePath), typingsFile + ext)));
-    } catch (err) {
-        log.error(err);
+        return typingsExts.some(ext => fs.existsSync(path.join(path.dirname(packagePath), typingsFile + ext)));
+    } catch (error) {
+        log.error(error);
         process.exit(1);
     }
 }

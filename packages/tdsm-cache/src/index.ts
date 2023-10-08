@@ -26,11 +26,11 @@ class CacheFile {
      * Initialize the cache file.
      */
     constructor() {
-        this.path = findCacheDirectory({ name: 'tdsm', create: true }) as string;
+        this.path = findCacheDirectory({ name: 'tdsm', create: true })!;
         this.file = path.join(this.path, 'cache.json');
 
         if (!this.path) {
-            log.error("Couldn't create a cache file");
+            log.error('Couldn\'t create a cache file');
             return;
         }
 
@@ -53,10 +53,10 @@ class CacheFile {
      * @param {Library} lib Library to find
      * @returns
      */
-    find(lib: Library): CacheInfo | null {
-        return this.data.filter(
-            (_lib) => lib.dependency === _lib.dependency && semver.intersects(lib.version, _lib.version),
-        )[0];
+    find(lib: Library): CacheInfo | undefined {
+        return this.data.find(
+            _lib => lib.dependency === _lib.dependency && semver.intersects(lib.version, _lib.version),
+        );
     }
 
     /**
@@ -65,7 +65,7 @@ class CacheFile {
      */
     delete(lib: Library): void {
         const item = this.find(lib);
-        this.data = this.data.filter((_lib) => _lib === item);
+        this.data = this.data.filter(_lib => _lib === item);
     }
 
     /**

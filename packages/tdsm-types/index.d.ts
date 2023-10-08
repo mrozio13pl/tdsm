@@ -7,7 +7,7 @@ export declare type PackageManager = 'npm' | 'yarn' | 'pnpm';
 
 /**
  * Save option (`dev` | `optional` | `peer` | `bundle` | `exact`).
- * @link https://docs.npmjs.com/cli/v10/commands/npm-install
+ * @see https://docs.npmjs.com/cli/v10/commands/npm-install
  */
 export declare type SaveOption = 'dev' | 'optional' | 'peer' | 'exact' | 'bundle';
 
@@ -38,7 +38,7 @@ export declare interface Options {
     /**
      * Whether should check built-in modules.
      * @type {boolean}
-     * @default false 
+     * @default false
      */
     builtins: boolean;
     /**

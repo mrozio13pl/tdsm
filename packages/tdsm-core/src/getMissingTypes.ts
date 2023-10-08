@@ -9,13 +9,14 @@ import { Library } from '@tdsm/types';
 function getMissingTypes(pkg: PackageJson): Library[] {
     const deps = Object.keys(pkg.dependencies || {});
     const devDeps = Object.keys(pkg.devDependencies || {});
-    const typesDeps = [...deps, ...devDeps].filter((dependency) => dependency.startsWith('@types/'));
+    const typesDeps = [...deps, ...devDeps].filter(dependency => dependency.startsWith('@types/'));
 
     return deps
-        .filter((dependency) => !dependency.startsWith('@types/') && !typesDeps.includes('@types/' + dependency))
-        .map((dependency) => ({
+        .filter(dependency => !dependency.startsWith('@types/') && !typesDeps.includes('@types/' + dependency))
+        .map(dependency => ({
             dependency,
-            version: (pkg.dependencies && pkg.dependencies[dependency]) as string,
+            // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
+            version: (pkg.dependencies?.[dependency])!,
         }));
 }
 

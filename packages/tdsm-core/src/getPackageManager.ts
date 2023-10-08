@@ -1,5 +1,5 @@
-import fs from 'fs';
-import path from 'path';
+import { existsSync } from 'fs';
+import { resolve } from 'path';
 import { PackageManager } from '@tdsm/types';
 
 /**
@@ -8,9 +8,8 @@ import { PackageManager } from '@tdsm/types';
  * @returns {PackageManager}
  */
 function getPackageManager(cwd: string = process.cwd()): PackageManager {
-    if (fs.existsSync(path.resolve(cwd, 'yarn.lock'))) return 'yarn';
-    if (fs.existsSync(path.resolve(cwd, 'pnpm-lock.yaml')) || fs.existsSync(path.resolve(cwd, './node_modules/.pnpm')))
-        return 'pnpm';
+    if (existsSync(resolve(cwd, 'yarn.lock'))) return 'yarn';
+    if (existsSync(resolve(cwd, 'pnpm-lock.yaml')) || existsSync(resolve(cwd, './node_modules/.pnpm'))) return 'pnpm';
     return 'npm';
 }
 

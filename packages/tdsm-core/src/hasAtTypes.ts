@@ -9,9 +9,9 @@ const REGISTRY = 'https://registry.npmjs.org/';
  * @param {number} timeout Optional, timeout for a http request.
  * @returns {Promise<boolean>}
  */
-function hasAtTypes(dependency: string, timeout: number = 5000): Promise<boolean> {
+function hasAtTypes(dependency: string, timeout = 5000): Promise<boolean> {
     return new Promise(function (resolve, reject) {
-        get({ url: new URL('@types/' + dependency.replace(/\//g, '__'), REGISTRY).href, timeout }, function (err, res) {
+        get({ url: new URL('@types/' + dependency.replaceAll('/', '__'), REGISTRY).href, timeout }, function(err, res) {
             if (err) {
                 log.error(err);
                 reject(err);

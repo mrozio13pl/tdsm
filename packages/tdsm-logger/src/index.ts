@@ -3,7 +3,8 @@ import ansis, { Ansis } from 'ansis';
 /**
  * Whether debug logs are enabled. Default is `false`.
  */
-const shouldDebug = false;
+// eslint-disable-next-line prefer-const
+let shouldDebug = false;
 
 const colors: Record<string, Ansis> = {
     VERBOSE: ansis.magenta,
@@ -18,7 +19,7 @@ const colors: Record<string, Ansis> = {
 
 process.on('log', function (level: string, ...args) {
     // temp: mark level `verbose` as debug
-    if (level === 'verbose' && !shouldDebug) return;  
+    if (level === 'verbose' && !shouldDebug) return;
     console.log(colors[level.toUpperCase()](level), args.join(' '));
 });
 

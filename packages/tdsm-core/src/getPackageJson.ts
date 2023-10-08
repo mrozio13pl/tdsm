@@ -4,7 +4,7 @@ import log from 'proc-log';
 
 /**
  * Reads `package.json` from given path.
- * @param {GetPackageJsonOptions} options
+ * @param {GetPackageJsonOptions} options Options.
  * @returns {PackageJson} `package.json` object
  */
 function getPackageJson(options: GetPackageJsonOptions = {}): PackageJson | undefined {
@@ -12,8 +12,9 @@ function getPackageJson(options: GetPackageJsonOptions = {}): PackageJson | unde
 
     try {
         return readPkg.sync({ cwd: path, normalize });
-    } catch (err) {
-        log.error(err);
+    } catch (error) {
+        log.error(error);
+        return undefined;
     }
 }
 

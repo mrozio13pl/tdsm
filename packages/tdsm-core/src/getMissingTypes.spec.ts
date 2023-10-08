@@ -4,7 +4,7 @@ import { PackageJson } from 'read-pkg';
 import { Library } from '@tdsm/types';
 import { blue } from 'ansis/colors';
 
-test(`detects dependencies that don't have their ${blue('@types')} relatives`, (t) => {
+test(`detects dependencies that don't have their ${blue('@types')} relatives`, t => {
     const template: PackageJson = {
         name: 'example',
         version: '1.0.0',

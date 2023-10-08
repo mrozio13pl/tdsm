@@ -10,4 +10,4 @@ export default defineConfig({
     minifyIdentifiers: true,
     minifySyntax: true,
     outDir: 'lib'
-})
+});

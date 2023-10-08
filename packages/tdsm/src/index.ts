@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { getPackageJson, getMissingTypes, hasOwnTypes, hasAtTypes } from '@tdsm/core';
 import cachefile from '@tdsm/cache';
 import install from '@tdsm/package-install';
@@ -24,7 +25,10 @@ async function run(options: Options): Promise<void> {
 `),
     );
 
-    if (!pkg) return logger.error("Couldn't find `package.json` in", options.pkgDir);
+    if (!pkg) {
+        logger.error('Couldn\'t find `package.json` in', options.pkgDir);
+        return;
+    }
     if (options.debug) logger.shouldDebug = true;
 
     const startTime = Date.now();
@@ -32,7 +36,7 @@ async function run(options: Options): Promise<void> {
     let missing = getMissingTypes(pkg).filter(({ dependency, version }) => {
         return (
             !options.ignore.includes(dependency) &&
-            !cache.getData.some((e) => e.dependency === dependency && semver.intersects(e.version, version) && e.ignore)
+            !cache.getData.some(e => e.dependency === dependency && semver.intersects(e.version, version) && e.ignore)
         );
     });
 
@@ -48,7 +52,7 @@ async function run(options: Options): Promise<void> {
         return;
     }
 
-    missing = missing.filter((lib) => {
+    missing = missing.filter(lib => {
         const hasTypes = cache.find(lib)?.hasOwnTypes || hasOwnTypes(lib.dependency);
         cache.push(lib, { ignore: false, hasOwnTypes: hasTypes });
         return !hasTypes;
@@ -78,9 +82,10 @@ async function run(options: Options): Promise<void> {
                 spinner.start();
                 return;
             }
+            // eslint-disable-next-line consistent-return
             return lib;
         })
-    ).filter((lib) => lib) as Library[];
+    ).filter(Boolean) as Library[];
 
     spinner.stop({
         text: `Done checking. (${(Date.now() / 1e3 - startCheckingTime).toFixed(1)}s)`,
@@ -98,7 +103,7 @@ async function run(options: Options): Promise<void> {
         '\n',
         ansis.bold(`Found ${missing.length} missing dependencies:`),
         '\n',
-        missing.map((lib) => `${ansis.green('• ')}${lib.dependency}${ansis.gray(formatLibraryVersion(lib))}\n`).join(' '),
+        missing.map(lib => `${ansis.green('• ')}${lib.dependency}${ansis.gray(formatLibraryVersion(lib))}\n`).join(' '),
         '\n',
     );
 

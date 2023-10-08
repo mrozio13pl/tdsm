@@ -11,10 +11,14 @@
     "author": "mrozio13pl",
     "license": "MIT",
     "scripts": {
-        "release": "npx lerna run test && npx lerna run build && lerna publish"
+        "test": "npx lerna run test",
+        "lint": "eslint packages",
+        "build": "npx lerna run build",
+        "release": "npm t && npx lerna run build && lerna publish"
     },
-    "dependencies": {},
     "devDependencies": {
+        "@mrozio/eslint-config": "^1.0.0",
+        "eslint": "^8.47.0",
         "lerna": "^7.2.0"
     }
 }

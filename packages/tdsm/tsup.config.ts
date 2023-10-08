@@ -12,4 +12,4 @@ export default defineConfig({
     outDir: 'lib',
     target: 'es2015',
     tsconfig: './tsconfig.json'
-})
+});

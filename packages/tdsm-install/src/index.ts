@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import spawn from 'cross-spawn';
 import log from 'proc-log';
 import { PackageInstallOptions } from '@tdsm/types';
@@ -8,10 +9,10 @@ import { PackageInstallOptions } from '@tdsm/types';
  * @param {PackageInstallOptions} options Options for managing the installation process.
  */
 function install(libraries: string[], options: PackageInstallOptions = { manager: 'npm', save: ['dev'], types: false }): Promise<void> {
-    if(options.types) libraries = libraries.map((library) => '@types/' + library);
+    if (options.types) libraries = libraries.map(library => '@types/' + library);
     log.verbose('Installing following', ...libraries);
 
-    const proc = spawn(options.manager, ['add', ...libraries, ...options.save.map((saveOption) => '--save-' + saveOption)], {
+    const proc = spawn(options.manager, ['add', ...libraries, ...options.save.map(saveOption => '--save-' + saveOption)], {
         stdio: 'inherit',
     });
 
@@ -19,7 +20,7 @@ function install(libraries: string[], options: PackageInstallOptions = { manager
         proc.on('close', () => {
             resolve();
         });
-        proc.on('error', (err) => {
+        proc.on('error', err => {
             reject(err);
         });
     });

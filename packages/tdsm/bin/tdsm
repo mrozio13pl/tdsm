@@ -25,3 +25,5 @@ prog
     })
 
 prog.parse(process.argv);
+
+// TODO: improve cli

@@ -1,0 +1,6 @@
+**/node_modules/**
+bin/
+packages/*/lib/**
+**/coverage/**
+**/*.spec.ts
+**/*.js
